@@ -1,1 +1,3255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LUMINE — Wear Your Light.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+:root {
+    --black: #080808;
+    --dark: #101010;
+    --dark-2: #171717;
+    --white: #f4f2ed;
+    --gray: #969696;
+    --line: #292929;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--black);
+    color: var(--white);
+    font-family: "Inter", Arial, sans-serif;
+}
+
+body.locked {
+    overflow: hidden;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+}
+
+.mono {
+    font-family: "DM Mono", monospace;
+}
+
+.eyebrow {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gray);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    height: 76px;
+
+    background: rgba(8, 8, 8, .94);
+
+    border-bottom: 1px solid var(--line);
+
+    backdrop-filter: blur(12px);
+}
+
+.nav {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.nav-links a:hover {
+    opacity: .55;
+}
+
+.cart-button {
+    height: 43px;
+
+    padding: 0 15px;
+
+    border: 1px solid var(--line);
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: .08em;
+}
+
+.cart-button:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+.cart-number {
+    margin-left: 5px;
+
+    display: inline-flex;
+
+    min-width: 19px;
+    height: 19px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--white);
+    color: var(--black);
+
+    font-size: 10px;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+#home {
+    min-height: calc(100vh - 76px);
+
+    display: flex;
+    align-items: flex-end;
+
+    border-bottom: 1px solid var(--line);
+
+    background:
+        radial-gradient(
+            circle at 75% 25%,
+            rgba(255,255,255,.13),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #191919,
+            #080808 65%,
+            #141414
+        );
+}
+
+.hero {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+
+    padding: 110px 0 85px;
+}
+
+.hero-small {
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    margin: 0;
+
+    font-size: clamp(65px, 12vw, 150px);
+
+    line-height: .8;
+
+    letter-spacing: -.075em;
+
+    font-weight: 900;
+}
+
+.hero h1 span {
+    display: block;
+}
+
+.hero-description {
+    max-width: 520px;
+
+    margin: 38px 0 30px;
+
+    color: var(--gray);
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+.primary-button {
+    min-height: 50px;
+
+    padding: 0 24px;
+
+    border: 1px solid var(--white);
+
+    background: var(--white);
+
+    color: var(--black);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: .1em;
+}
+
+.primary-button:hover {
+    background: transparent;
+    color: var(--white);
+}
+
+.secondary-button {
+    min-height: 50px;
+
+    padding: 0 24px;
+
+    border: 1px solid var(--line);
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: .1em;
+}
+
+.secondary-button:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+section {
+    padding: 100px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.section-title {
+    font-size: clamp(45px, 7vw, 85px);
+
+    line-height: .88;
+
+    letter-spacing: -.07em;
+
+    margin: 10px 0 0;
+}
+
+.section-intro {
+    max-width: 500px;
+
+    color: var(--gray);
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+}
+
+.about-text {
+    color: var(--gray);
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+.about-text strong {
+    color: var(--white);
+}
+
+.about-story {
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid var(--line);
+}
+
+.about-story h3 {
+    font-size: 18px;
+
+    margin: 0 0 12px;
+}
+
+.manifesto {
+    margin-top: 40px;
+
+    padding: 25px;
+
+    border: 1px solid var(--line);
+
+    background: var(--dark);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    letter-spacing: .08em;
+}
+
+
+/* =========================================================
+   SHOP
+========================================================= */
+
+.shop-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    gap: 40px;
+
+    margin-bottom: 40px;
+}
+
+.products {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.product-card {
+    background: var(--dark);
+
+    border: 1px solid var(--line);
+
+    overflow: hidden;
+
+    transition: transform .2s ease,
+                border-color .2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #555;
+}
+
+.product-image {
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,255,255,.12),
+            transparent 28%
+        ),
+        linear-gradient(
+            145deg,
+            #202020,
+            #0c0c0c
+        );
+}
+
+.product-shirt {
+    width: 48%;
+
+    aspect-ratio: .82;
+
+    background: #202020;
+
+    clip-path: polygon(
+        25% 0,
+        75% 0,
+        100% 18%,
+        82% 32%,
+        72% 25%,
+        72% 100%,
+        28% 100%,
+        28% 25%,
+        18% 32%,
+        0 18%
+    );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,.5);
+}
+
+.product-shirt span {
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: .15em;
+
+    color: #888;
+
+    transform: rotate(-90deg);
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-code {
+    font-family: "DM Mono", monospace;
+
+    color: #666;
+
+    font-size: 10px;
+
+    margin-bottom: 8px;
+}
+
+.product-name {
+    font-size: 18px;
+
+    font-weight: 800;
+}
+
+.product-category {
+    margin-top: 6px;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+.product-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.price {
+    font-family: "DM Mono", monospace;
+
+    font-size: 12px;
+}
+
+.view-product {
+    height: 40px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--line);
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: .07em;
+}
+
+.view-product:hover {
+    background: var(--white);
+
+    color: var(--black);
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+}
+
+.contact-details {
+    display: grid;
+
+    gap: 20px;
+}
+
+.contact-item {
+    padding: 20px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.contact-label {
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    color: #666;
+
+    letter-spacing: .15em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+.contact-value {
+    font-size: 16px;
+}
+
+.contact-value a:hover {
+    opacity: .55;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 60px 0 30px;
+}
+
+.footer-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    font-size: 35px;
+
+    font-weight: 900;
+
+    letter-spacing: .15em;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--line);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    color: #666;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PRODUCT WINDOW
+========================================================= */
+
+.overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.82);
+
+    z-index: 100;
+
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.product-window {
+    position: fixed;
+
+    z-index: 110;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(1000px, calc(100% - 30px));
+
+    max-height: 90vh;
+
+    overflow: auto;
+
+    background: #101010;
+
+    border: 1px solid var(--line);
+
+    display: none;
+}
+
+.product-window.active {
+    display: block;
+}
+
+.product-layout {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+}
+
+.product-large-photo {
+    min-height: 600px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,255,255,.13),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #1c1c1c,
+            #090909
+        );
+}
+
+.large-shirt {
+    width: 55%;
+
+    aspect-ratio: .82;
+
+    background: #202020;
+
+    clip-path: polygon(
+        25% 0,
+        75% 0,
+        100% 18%,
+        82% 32%,
+        72% 25%,
+        72% 100%,
+        28% 100%,
+        28% 25%,
+        18% 32%,
+        0 18%
+    );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.6);
+}
+
+.large-shirt span {
+    font-family: "DM Mono", monospace;
+
+    font-size: 13px;
+
+    letter-spacing: .18em;
+
+    color: #888;
+
+    transform: rotate(-90deg);
+}
+
+.product-details {
+    padding: 35px;
+}
+
+.product-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+}
+
+.close-button {
+    width: 40px;
+
+    height: 40px;
+
+    border: 1px solid var(--line);
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 23px;
+}
+
+.close-button:hover {
+    background: var(--white);
+
+    color: var(--black);
+}
+
+.product-details h2 {
+    font-size: 43px;
+
+    line-height: .95;
+
+    letter-spacing: -.06em;
+
+    margin: 38px 0 8px;
+}
+
+.product-description {
+    color: var(--gray);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin: 25px 0;
+}
+
+.option-title {
+    margin: 26px 0 10px;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: .13em;
+
+    text-transform: uppercase;
+}
+
+.options {
+    display: flex;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+.option {
+    min-width: 45px;
+
+    height: 40px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--line);
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 11px;
+}
+
+.option:hover {
+    border-color: #777;
+}
+
+.option.selected {
+    background: var(--white);
+
+    color: var(--black);
+
+    border-color: var(--white);
+}
+
+.quantity {
+    display: flex;
+
+    width: max-content;
+
+    align-items: center;
+
+    border: 1px solid var(--line);
+}
+
+.quantity button {
+    width: 43px;
+
+    height: 43px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 18px;
+}
+
+.quantity button:hover {
+    background: #1b1b1b;
+}
+
+.quantity span {
+    min-width: 45px;
+
+    text-align: center;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 13px;
+}
+
+.product-actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 9px;
+
+    margin-top: 30px;
+}
+
+.product-actions button {
+    min-height: 50px;
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+.cart-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 120;
+
+    background: rgba(0,0,0,.7);
+
+    display: none;
+}
+
+.cart-overlay.active {
+    display: block;
+}
+
+.cart-panel {
+    position: fixed;
+
+    right: 0;
+
+    top: 0;
+
+    z-index: 130;
+
+    width: min(440px, 100%);
+
+    height: 100vh;
+
+    background: #0e0e0e;
+
+    border-left: 1px solid var(--line);
+
+    transform: translateX(100%);
+
+    transition: transform .25s ease;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.cart-panel.active {
+    transform: translateX(0);
+}
+
+.cart-header {
+    height: 75px;
+
+    padding: 0 20px;
+
+    border-bottom: 1px solid var(--line);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.cart-header h2 {
+    margin: 0;
+
+    font-size: 17px;
+}
+
+.cart-items {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 20px;
+}
+
+.empty-cart {
+    text-align: center;
+
+    color: #666;
+
+    padding: 60px 10px;
+
+    line-height: 1.7;
+}
+
+.cart-item {
+    display: grid;
+
+    grid-template-columns: 65px 1fr auto;
+
+    gap: 13px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.cart-thumb {
+    width: 65px;
+
+    height: 65px;
+
+    background: #191919;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+}
+
+.cart-item h3 {
+    margin: 2px 0 7px;
+
+    font-size: 13px;
+}
+
+.cart-item p {
+    margin: 0;
+
+    color: #777;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+.remove-item {
+    border: 0;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 10px;
+
+    padding: 0;
+
+    margin-top: 7px;
+}
+
+.remove-item:hover {
+    color: var(--white);
+}
+
+.cart-footer {
+    padding: 20px;
+
+    border-top: 1px solid var(--line);
+}
+
+.total {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 13px;
+}
+
+.full-button {
+    width: 100%;
+}
+
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+.checkout {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    background: var(--black);
+
+    overflow-y: auto;
+
+    display: none;
+}
+
+.checkout.active {
+    display: block;
+}
+
+.checkout-inner {
+    width: min(1000px, calc(100% - 40px));
+
+    margin: auto;
+
+    padding: 35px 0 70px;
+}
+
+.checkout-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 35px;
+}
+
+.checkout-header h1 {
+    margin: 0;
+
+    font-size: clamp(42px, 7vw, 75px);
+
+    line-height: .85;
+
+    letter-spacing: -.07em;
+}
+
+.checkout-grid {
+    display: grid;
+
+    grid-template-columns: 1.2fr .8fr;
+
+    gap: 25px;
+}
+
+.checkout-box {
+    border: 1px solid var(--line);
+
+    background: var(--dark);
+
+    padding: 25px;
+}
+
+.checkout-box h2 {
+    margin: 0 0 22px;
+
+    font-size: 17px;
+}
+
+.field {
+    margin-bottom: 17px;
+}
+
+.field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: .1em;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+
+    border: 1px solid var(--line);
+
+    background: #090909;
+
+    color: var(--white);
+
+    padding: 12px;
+
+    outline: none;
+}
+
+.field input {
+    height: 48px;
+}
+
+.field textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+.payment {
+    border: 1px solid var(--line);
+
+    padding: 15px;
+
+    margin-bottom: 8px;
+}
+
+.payment label {
+    display: flex;
+
+    gap: 10px;
+
+    cursor: pointer;
+}
+
+.payment strong {
+    font-size: 13px;
+}
+
+.payment small {
+    display: block;
+
+    color: #777;
+
+    margin-top: 5px;
+}
+
+.checkout-line {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid var(--line);
+
+    font-size: 12px;
+}
+
+.checkout-total {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding-top: 20px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 15px;
+}
+
+.cod-note {
+    margin-top: 20px;
+
+    color: #777;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+
+        margin-right: 7px;
+    }
+
+    .nav-links.mobile {
+        display: flex;
+
+        position: absolute;
+
+        left: 0;
+        right: 0;
+        top: 76px;
+
+        background: #080808;
+
+        border-bottom: 1px solid var(--line);
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid,
+    .contact-grid,
+    .checkout-grid,
+    .product-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .product-large-photo {
+        min-height: 420px;
+    }
+
+    .shop-header {
+        display: block;
+    }
+
+    .section-intro {
+        margin-top: 18px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .container,
+    .hero,
+    .checkout-inner {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .hero {
+        padding: 100px 0 55px;
+    }
+
+    section {
+        padding: 70px 0;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .product-details {
+        padding: 23px;
+    }
+
+    .product-details h2 {
+        font-size: 35px;
+    }
+
+    .product-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .product-large-photo {
+        min-height: 350px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+    <div class="container nav">
+
+        <a href="#home" class="logo">
+            LUMINE
+        </a>
+
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="#home">Home</a>
+
+            <a href="#about">About</a>
+
+            <a href="#shop">Shop</a>
+
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+
+        <div>
+
+            <button
+                class="cart-button mobile-menu"
+                id="mobileMenu"
+                type="button"
+            >
+                MENU
+            </button>
+
+            <button
+                class="cart-button"
+                id="cartButton"
+                type="button"
+            >
+                CART
+
+                <span
+                    class="cart-number"
+                    id="cartNumber"
+                >
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =======================================================
+     HOME
+======================================================= -->
+
+<section id="home">
+
+    <div class="hero">
+
+        <div class="eyebrow hero-small">
+            LUMINE / EST. 2026
+        </div>
+
+
+        <h1>
+            WEAR
+            <span>YOUR LIGHT.</span>
+        </h1>
+
+
+        <p class="hero-description">
+
+            LUMINE is a contemporary streetwear brand
+            built around individuality, expression,
+            and the quiet confidence of being yourself.
+
+        </p>
+
+
+        <a
+            href="#shop"
+            class="primary-button"
+        >
+            Explore the collection →
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section id="about">
+
+    <div class="container about-grid">
+
+
+        <div>
+
+            <div class="eyebrow">
+                About LUMINE
+            </div>
+
+            <h2 class="section-title">
+                MORE THAN<br>
+                CLOTHING.
+            </h2>
+
+        </div>
+
+
+        <div class="about-text">
+
+            <p>
+
+                <strong>LUMINE</strong> was created from
+                a simple idea: everyone carries their
+                own light.
+
+            </p>
+
+
+            <p>
+
+                The brand represents individuality,
+                self-expression, and the freedom to
+                create your own identity.
+
+            </p>
+
+
+            <div class="about-story">
+
+                <h3>
+                    OUR STORY
+                </h3>
+
+                <p>
+
+                    This space is where the history of
+                    LUMINE will be told — from the
+                    beginning of the brand, the people
+                    behind it, the inspiration that
+                    created it, and the journey that
+                    follows.
+
+                </p>
+
+                <p>
+
+                    Once we have the owner's actual
+                    story, we'll replace this text with
+                    the real history of the company.
+
+                </p>
+
+            </div>
+
+
+            <div class="manifesto">
+
+                NO NOISE.<br>
+
+                NO FORCED IMAGE.<br>
+
+                JUST YOU.<br>
+
+                <br>
+
+                WEAR YOUR LIGHT.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SHOP
+======================================================= -->
+
+<section id="shop">
+
+    <div class="container">
+
+
+        <div class="shop-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    The collection
+                </div>
+
+                <h2 class="section-title">
+                    SHOP.
+                </h2>
+
+            </div>
+
+
+            <p class="section-intro">
+
+                Explore the current LUMINE collection.
+                Choose your color, size, and quantity
+                before adding an item to your cart.
+
+            </p>
+
+        </div>
+
+
+        <div
+            class="products"
+            id="products"
+        ></div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
+
+<section id="contact">
+
+    <div class="container contact-grid">
+
+
+        <div>
+
+            <div class="eyebrow">
+                Contact
+            </div>
+
+            <h2 class="section-title">
+                TALK TO<br>
+                THE OWNER.
+            </h2>
+
+            <p class="section-intro">
+
+                For orders, collaborations, questions,
+                or anything LUMINE-related, contact
+                the owner directly.
+
+            </p>
+
+        </div>
+
+
+        <div class="contact-details">
+
+
+            <div class="contact-item">
+
+                <div class="contact-label">
+                    Owner
+                </div>
+
+                <div class="contact-value">
+                    OWNER NAME
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-label">
+                    Email
+                </div>
+
+                <div class="contact-value">
+
+                    <a href="mailto:owner@example.com">
+                        owner@example.com
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-label">
+                    Instagram
+                </div>
+
+                <div class="contact-value">
+                    @LUMINE
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-label">
+                    Facebook
+                </div>
+
+                <div class="contact-value">
+                    LUMINE
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-label">
+                    Phone
+                </div>
+
+                <div class="contact-value">
+                    +63 XXX XXX XXXX
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-top">
+
+            <div class="footer-logo">
+                LUMINE
+            </div>
+
+            <div class="eyebrow">
+                WEAR YOUR LIGHT.
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 LUMINE. ALL RIGHTS RESERVED.
+            </span>
+
+            <span>
+                COD IS NOT AVAILABLE
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =======================================================
+     PRODUCT OVERLAY
+======================================================= -->
+
+<div
+    class="overlay"
+    id="productOverlay"
+></div>
+
+
+<div
+    class="product-window"
+    id="productWindow"
+>
+
+    <div class="product-layout">
+
+
+        <!-- PRODUCT VISUAL -->
+
+        <div class="product-large-photo">
+
+            <div
+                class="large-shirt"
+                id="largeShirt"
+            >
+
+                <span id="shirtText">
+                    LUMINE
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT DETAILS -->
+
+        <div class="product-details">
+
+
+            <div class="product-top">
+
+                <div
+                    class="eyebrow"
+                    id="modalCode"
+                >
+                    LUMINE // 001
+                </div>
+
+
+                <button
+                    class="close-button"
+                    id="closeProduct"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <h2 id="modalName">
+                Essential Tee
+            </h2>
+
+
+            <div
+                class="mono"
+                id="modalPrice"
+            >
+                ₱599 — ₱899
+            </div>
+
+
+            <p
+                class="product-description"
+                id="modalDescription"
+            >
+                A clean everyday staple designed for
+                comfort, layering and effortless
+                streetwear styling.
+            </p>
+
+
+            <!-- COLOR -->
+
+            <div class="option-title">
+                Color
+            </div>
+
+
+            <div
+                class="options"
+                id="colorOptions"
+            ></div>
+
+
+            <!-- SIZE -->
+
+            <div class="option-title">
+                Size
+            </div>
+
+
+            <div
+                class="options"
+                id="sizeOptions"
+            ></div>
+
+
+            <!-- QUANTITY -->
+
+            <div class="option-title">
+                Quantity
+            </div>
+
+
+            <div class="quantity">
+
+                <button
+                    id="minusQuantity"
+                    type="button"
+                >
+                    −
+                </button>
+
+
+                <span id="quantity">
+                    1
+                </span>
+
+
+                <button
+                    id="plusQuantity"
+                    type="button"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="product-actions">
+
+
+                <button
+                    class="secondary-button"
+                    id="addCart"
+                    type="button"
+                >
+                    Add to cart
+                </button>
+
+
+                <button
+                    class="primary-button"
+                    id="buyNow"
+                    type="button"
+                >
+                    Buy now
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     CART
+======================================================= -->
+
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+></div>
+
+
+<aside
+    class="cart-panel"
+    id="cartPanel"
+>
+
+
+    <div class="cart-header">
+
+        <h2>
+            YOUR CART
+        </h2>
+
+
+        <button
+            class="close-button"
+            id="closeCart"
+            type="button"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        class="cart-items"
+        id="cartItems"
+    ></div>
+
+
+    <div class="cart-footer">
+
+        <div class="total">
+
+            <span>
+                SUBTOTAL
+            </span>
+
+            <strong id="cartTotal">
+                ₱0
+            </strong>
+
+        </div>
+
+
+        <button
+            class="primary-button full-button"
+            id="checkoutButton"
+            type="button"
+        >
+            Checkout
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =======================================================
+     CHECKOUT
+======================================================= -->
+
+<div
+    class="checkout"
+    id="checkout"
+>
+
+    <div class="checkout-inner">
+
+
+        <div class="checkout-header">
+
+            <h1>
+                CHECKOUT.
+            </h1>
+
+
+            <button
+                class="secondary-button"
+                id="closeCheckout"
+                type="button"
+            >
+                ← Back
+            </button>
+
+        </div>
+
+
+        <div class="checkout-grid">
+
+
+            <!-- CUSTOMER DETAILS -->
+
+            <div class="checkout-box">
+
+                <h2>
+                    Customer Information
+                </h2>
+
+
+                <div class="field">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Your full name"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        placeholder="+63"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        placeholder="you@example.com"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Shipping Address
+                    </label>
+
+                    <textarea
+                        placeholder="Complete address"
+                    ></textarea>
+
+                </div>
+
+
+                <h2 style="margin-top:30px">
+                    Payment Method
+                </h2>
+
+
+                <div class="payment">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="payment"
+                        >
+
+                        <span>
+
+                            <strong>
+                                GCash
+                            </strong>
+
+                            <small>
+                                GCash payment
+                            </small>
+
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="payment">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="payment"
+                        >
+
+                        <span>
+
+                            <strong>
+                                Maya
+                            </strong>
+
+                            <small>
+                                Maya payment
+                            </small>
+
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="payment">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="payment"
+                        >
+
+                        <span>
+
+                            <strong>
+                                Bank Transfer
+                            </strong>
+
+                            <small>
+                                Direct bank transfer
+                            </small>
+
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="cod-note">
+
+                    COD IS NOT AVAILABLE.<br>
+
+                    Orders require prepaid payment.
+
+                </div>
+
+
+                <button
+                    class="primary-button full-button"
+                    type="button"
+                    style="margin-top:25px"
+                    onclick="alert('Checkout system will be connected to the owner next.')"
+                >
+                    Place Order
+                </button>
+
+            </div>
+
+
+
+            <!-- SUMMARY -->
+
+            <div class="checkout-box">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <div
+                    id="checkoutSummary"
+                ></div>
+
+
+                <div class="checkout-total">
+
+                    <span>
+                        TOTAL
+                    </span>
+
+                    <strong id="checkoutTotal">
+                        ₱0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
+<script>
+
+
+// =========================================================
+// PRODUCT DATA
+// =========================================================
+
+const products = [
+
+    {
+        id: 1,
+
+        code: "LUMINE // 001",
+
+        name: "Essential Tee",
+
+        category: "T-Shirt",
+
+        price: 699,
+
+        displayPrice: "₱599 — ₱899",
+
+        emoji: "LUMINE",
+
+        colors: [
+            "BLACK",
+            "OFF-WHITE",
+            "CHARCOAL",
+            "STONE"
+        ],
+
+        sizes: [
+            "XXS",
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+
+        description:
+            "A clean everyday staple designed for comfort, layering and effortless streetwear styling."
+    },
+
+
+    {
+        id: 2,
+
+        code: "LUMINE // 002",
+
+        name: "Afterdark Hoodie",
+
+        category: "Hoodie",
+
+        price: 1199,
+
+        displayPrice: "₱899 — ₱1,499",
+
+        emoji: "AFTERDARK",
+
+        colors: [
+            "BLACK",
+            "CHARCOAL",
+            "WASHED GRAY"
+        ],
+
+        sizes: [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+
+        description:
+            "A relaxed hoodie built for late nights, cold mornings and everyday rotation."
+    },
+
+
+    {
+        id: 3,
+
+        code: "LUMINE // 003",
+
+        name: "Lightform Tee",
+
+        category: "T-Shirt",
+
+        price: 799,
+
+        displayPrice: "₱699 — ₱999",
+
+        emoji: "LIGHT",
+
+        colors: [
+            "BLACK",
+            "CREAM",
+            "ASH"
+        ],
+
+        sizes: [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+
+        description:
+            "A statement tee inspired by light, movement and individuality."
+    }
+
+];
+
+
+// =========================================================
+// VARIABLES
+// =========================================================
+
+let currentProduct = null;
+
+let selectedColor = "";
+
+let selectedSize = "";
+
+let currentQuantity = 1;
+
+let cart = [];
+
+
+// =========================================================
+// ELEMENTS
+// =========================================================
+
+const productsContainer =
+    document.getElementById("products");
+
+const productWindow =
+    document.getElementById("productWindow");
+
+const productOverlay =
+    document.getElementById("productOverlay");
+
+const cartPanel =
+    document.getElementById("cartPanel");
+
+const cartOverlay =
+    document.getElementById("cartOverlay");
+
+
+// =========================================================
+// DISPLAY PRODUCTS
+// =========================================================
+
+function displayProducts() {
+
+    productsContainer.innerHTML = "";
+
+
+    products.forEach(product => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "product-card";
+
+
+        card.innerHTML = `
+
+            <div class="product-image">
+
+                <div class="product-shirt">
+
+                    <span>
+                        ${product.emoji}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="product-info">
+
+                <div class="product-code">
+                    ${product.code}
+                </div>
+
+                <div class="product-name">
+                    ${product.name}
+                </div>
+
+                <div class="product-category">
+                    ${product.category}
+                </div>
+
+
+                <div class="product-bottom">
+
+                    <div class="price">
+                        ${product.displayPrice}
+                    </div>
+
+
+                    <button
+                        class="view-product"
+                        type="button"
+                        onclick="openProduct(${product.id})"
+                    >
+                        View Product
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        productsContainer.appendChild(card);
+
+    });
+
+}
+
+
+// =========================================================
+// OPEN PRODUCT
+// =========================================================
+
+function openProduct(id) {
+
+    currentProduct =
+        products.find(
+            product => product.id === id
+        );
+
+
+    if (!currentProduct) {
+        return;
+    }
+
+
+    selectedColor =
+        currentProduct.colors[0];
+
+
+    selectedSize =
+        currentProduct.sizes.includes("M")
+        ? "M"
+        : currentProduct.sizes[0];
+
+
+    currentQuantity = 1;
+
+
+    document.getElementById("modalCode")
+        .textContent =
+        currentProduct.code;
+
+
+    document.getElementById("modalName")
+        .textContent =
+        currentProduct.name;
+
+
+    document.getElementById("modalPrice")
+        .textContent =
+        currentProduct.displayPrice;
+
+
+    document.getElementById("modalDescription")
+        .textContent =
+        currentProduct.description;
+
+
+    document.getElementById("shirtText")
+        .textContent =
+        currentProduct.emoji;
+
+
+    document.getElementById("quantity")
+        .textContent =
+        currentQuantity;
+
+
+    renderOptions();
+
+
+    productOverlay
+        .classList
+        .add("active");
+
+
+    productWindow
+        .classList
+        .add("active");
+
+
+    document.body
+        .classList
+        .add("locked");
+
+}
+
+
+// =========================================================
+// RENDER COLOR + SIZE
+// =========================================================
+
+function renderOptions() {
+
+
+    const colorContainer =
+        document.getElementById("colorOptions");
+
+
+    const sizeContainer =
+        document.getElementById("sizeOptions");
+
+
+    colorContainer.innerHTML = "";
+
+
+    sizeContainer.innerHTML = "";
+
+
+    currentProduct.colors.forEach(color => {
+
+        const button =
+            document.createElement("button");
+
+
+        button.className =
+            "option";
+
+
+        if (color === selectedColor) {
+
+            button.classList
+                .add("selected");
+
+        }
+
+
+        button.textContent =
+            color;
+
+
+        button.type =
+            "button";
+
+
+        button.onclick = () => {
+
+            selectedColor =
+                color;
+
+            renderOptions();
+
+        };
+
+
+        colorContainer.appendChild(button);
+
+    });
+
+
+    currentProduct.sizes.forEach(size => {
+
+        const button =
+            document.createElement("button");
+
+
+        button.className =
+            "option";
+
+
+        if (size === selectedSize) {
+
+            button.classList
+                .add("selected");
+
+        }
+
+
+        button.textContent =
+            size;
+
+
+        button.type =
+            "button";
+
+
+        button.onclick = () => {
+
+            selectedSize =
+                size;
+
+            renderOptions();
+
+        };
+
+
+        sizeContainer.appendChild(button);
+
+    });
+
+}
+
+
+// =========================================================
+// CLOSE PRODUCT
+// =========================================================
+
+function closeProduct() {
+
+    productOverlay
+        .classList
+        .remove("active");
+
+
+    productWindow
+        .classList
+        .remove("active");
+
+
+    document.body
+        .classList
+        .remove("locked");
+
+}
+
+
+// =========================================================
+// QUANTITY
+// =========================================================
+
+document.getElementById("minusQuantity")
+    .onclick = () => {
+
+        currentQuantity =
+            Math.max(
+                1,
+                currentQuantity - 1
+            );
+
+
+        document.getElementById("quantity")
+            .textContent =
+            currentQuantity;
+
+    };
+
+
+document.getElementById("plusQuantity")
+    .onclick = () => {
+
+        currentQuantity =
+            Math.min(
+                20,
+                currentQuantity + 1
+            );
+
+
+        document.getElementById("quantity")
+            .textContent =
+            currentQuantity;
+
+    };
+
+
+// =========================================================
+// ADD TO CART
+// =========================================================
+
+document.getElementById("addCart")
+    .onclick = () => {
+
+        if (!currentProduct) {
+            return;
+        }
+
+
+        const existing =
+            cart.find(item =>
+
+                item.productId ===
+                currentProduct.id
+
+                &&
+
+                item.color ===
+                selectedColor
+
+                &&
+
+                item.size ===
+                selectedSize
+
+            );
+
+
+        if (existing) {
+
+            existing.quantity +=
+                currentQuantity;
+
+        }
+
+        else {
+
+            cart.push({
+
+                productId:
+                    currentProduct.id,
+
+                color:
+                    selectedColor,
+
+                size:
+                    selectedSize,
+
+                quantity:
+                    currentQuantity,
+
+                price:
+                    currentProduct.price
+
+            });
+
+        }
+
+
+        closeProduct();
+
+        renderCart();
+
+    };
+
+
+// =========================================================
+// BUY NOW
+// =========================================================
+
+document.getElementById("buyNow")
+    .onclick = () => {
+
+        if (!currentProduct) {
+            return;
+        }
+
+
+        cart = [
+
+            {
+
+                productId:
+                    currentProduct.id,
+
+                color:
+                    selectedColor,
+
+                size:
+                    selectedSize,
+
+                quantity:
+                    currentQuantity,
+
+                price:
+                    currentProduct.price
+
+            }
+
+        ];
+
+
+        closeProduct();
+
+        renderCart();
+
+        openCart();
+
+    };
+
+
+// =========================================================
+// RENDER CART
+// =========================================================
+
+function renderCart() {
+
+    const container =
+        document.getElementById("cartItems");
+
+
+    container.innerHTML = "";
+
+
+    if (cart.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-cart">
+
+                YOUR CART IS EMPTY.
+
+                <br><br>
+
+                Find something that
+                feels like you.
+
+            </div>
+
+        `;
+
+    }
+
+
+    let total = 0;
+
+    let itemCount = 0;
+
+
+    cart.forEach((item, index) => {
+
+        const product =
+            products.find(
+                product =>
+                    product.id ===
+                    item.productId
+            );
+
+
+        const itemTotal =
+            product.price *
+            item.quantity;
+
+
+        total += itemTotal;
+
+        itemCount += item.quantity;
+
+
+        const div =
+            document.createElement("div");
+
+
+        div.className =
+            "cart-item";
+
+
+        div.innerHTML = `
+
+            <div class="cart-thumb">
+                ${product.emoji}
+            </div>
+
+
+            <div>
+
+                <h3>
+                    ${product.name}
+                </h3>
+
+
+                <p>
+
+                    ${item.color}
+                    /
+                    ${item.size}
+
+                    <br>
+
+                    ${item.quantity}
+                    ×
+                    ₱${product.price.toLocaleString()}
+
+                </p>
+
+
+                <button
+                    class="remove-item"
+                    type="button"
+                    onclick="removeCartItem(${index})"
+                >
+                    REMOVE
+                </button>
+
+            </div>
+
+
+            <strong>
+
+                ₱${itemTotal.toLocaleString()}
+
+            </strong>
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+
+    document.getElementById("cartNumber")
+        .textContent =
+        itemCount;
+
+
+    document.getElementById("cartTotal")
+        .textContent =
+        "₱" +
+        total.toLocaleString();
+
+
+    renderCheckout(total);
+
+}
+
+
+// =========================================================
+// REMOVE CART ITEM
+// =========================================================
+
+function removeCartItem(index) {
+
+    cart.splice(index, 1);
+
+    renderCart();
+
+}
+
+
+// =========================================================
+// OPEN CART
+// =========================================================
+
+document.getElementById("cartButton")
+    .onclick = () => {
+
+        renderCart();
+
+        cartPanel
+            .classList
+            .add("active");
+
+        cartOverlay
+            .classList
+            .add("active");
+
+        document.body
+            .classList
+            .add("locked");
+
+    };
+
+
+// =========================================================
+// CLOSE CART
+// =========================================================
+
+function closeCart() {
+
+    cartPanel
+        .classList
+        .remove("active");
+
+    cartOverlay
+        .classList
+        .remove("active");
+
+    document.body
+        .classList
+        .remove("locked");
+
+}
+
+
+document.getElementById("closeCart")
+    .onclick =
+    closeCart;
+
+
+cartOverlay.onclick =
+    closeCart;
+
+
+// =========================================================
+// CLOSE PRODUCT
+// =========================================================
+
+document.getElementById("closeProduct")
+    .onclick =
+    closeProduct;
+
+
+productOverlay.onclick =
+    closeProduct;
+
+
+// =========================================================
+// CHECKOUT
+// =========================================================
+
+function renderCheckout(total) {
+
+    const summary =
+        document.getElementById(
+            "checkoutSummary"
+        );
+
+
+    summary.innerHTML = "";
+
+
+    cart.forEach(item => {
+
+        const product =
+            products.find(
+                product =>
+                    product.id ===
+                    item.productId
+            );
+
+
+        const row =
+            document.createElement("div");
+
+
+        row.className =
+            "checkout-line";
+
+
+        row.innerHTML = `
+
+            <span>
+
+                ${product.name}
+
+                <br>
+
+                <small>
+
+                    ${item.color}
+                    /
+                    ${item.size}
+                    ×
+                    ${item.quantity}
+
+                </small>
+
+            </span>
+
+
+            <strong>
+
+                ₱${(
+                    product.price *
+                    item.quantity
+                ).toLocaleString()}
+
+            </strong>
+
+        `;
+
+
+        summary.appendChild(row);
+
+    });
+
+
+    document.getElementById("checkoutTotal")
+        .textContent =
+        "₱" +
+        total.toLocaleString();
+
+}
+
+
+// =========================================================
+// OPEN CHECKOUT
+// =========================================================
+
+document.getElementById("checkoutButton")
+    .onclick = () => {
+
+        if (cart.length === 0) {
+
+            alert(
+                "Your cart is empty."
+            );
+
+            return;
+
+        }
+
+
+        closeCart();
+
+
+        document.getElementById("checkout")
+            .classList
+            .add("active");
+
+
+        document.body
+            .classList
+            .add("locked");
+
+    };
+
+
+// =========================================================
+// CLOSE CHECKOUT
+// =========================================================
+
+document.getElementById("closeCheckout")
+    .onclick = () => {
+
+        document.getElementById("checkout")
+            .classList
+            .remove("active");
+
+
+        document.body
+            .classList
+            .remove("locked");
+
+    };
+
+
+// =========================================================
+// MOBILE MENU
+// =========================================================
+
+document.getElementById("mobileMenu")
+    .onclick = () => {
+
+        document.getElementById("navLinks")
+            .classList
+            .toggle("mobile");
+
+    };
+
+
+document.querySelectorAll(
+    ".nav-links a"
+)
+.forEach(link => {
+
+    link.onclick = () => {
+
+        document.getElementById("navLinks")
+            .classList
+            .remove("mobile");
+
+    };
+
+});
+
+
+// =========================================================
+// START
+// =========================================================
+
+displayProducts();
+
+renderCart();
+
+</script>
+
+
+</body>
+</html>
